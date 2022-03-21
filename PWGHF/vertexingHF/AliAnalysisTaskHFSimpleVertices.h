@@ -10,6 +10,8 @@
 //          
 //*************************************************************************
 
+#include "AliFJWrapper.h"
+
 #include <map>
 #include <string>
 #include "DCAFitterN.h"
@@ -43,7 +45,20 @@ class AliAnalysisTaskHFSimpleVertices : public AliAnalysisTaskSE {
   void SetMaxRapidityForFiducialAcceptance(Double_t ymax){fMaxRapidityCand=ymax;}
   void EnableCPUTimeCheck(Bool_t enable=kTRUE, Bool_t milliseconds=kFALSE) {fEnableCPUTimeCheck=enable; fCountTimeInMilliseconds=milliseconds;}
 
- private:
+ private:           
+  bool doJetFinding = true;
+  void MakeJetFinding(AliESDEvent *esd, Int_t totTracks, Int_t iNegTrack_0, Int_t iPosTrack_0, AliAODRecoDecayHF2Prong* the2Prong);
+  TH1F* hjetpt;
+  TH1F* hjetE; // returns the energy component
+  TH1F* hjetpx; // returns the x momentum component
+  TH1F* hjetpy; // returns the y momentum component
+  TH1F* hjetpz; // returns the z momentum component
+  TH1F* hjetphi; // returns the azimuthal angle in range 0 . . . 2π
+  TH1F* hjetrap; // returns the rapidity
+  TH1F* hjetconstituents;
+  TH1F* hjetzg;
+  TH1F* hjetrg;
+  TH1F* hjetnsd;
 
   AliAnalysisTaskHFSimpleVertices(const AliAnalysisTaskHFSimpleVertices &source);
   AliAnalysisTaskHFSimpleVertices& operator=(const AliAnalysisTaskHFSimpleVertices &source);
