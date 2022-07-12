@@ -1649,7 +1649,7 @@ void AliAnalysisTaskHFSimpleVertices::UserExec(Option_t *)
           }
         }
         
-        if(doJetFinding){
+        if(fSetJetFindingTask){
 			MakeJetFinding(esd, totTracks, iNegTrack_0, iPosTrack_0, the2Prong);
 		}
 

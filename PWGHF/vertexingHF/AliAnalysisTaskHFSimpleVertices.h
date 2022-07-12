@@ -38,6 +38,7 @@ class AliAnalysisTaskHFSimpleVertices : public AliAnalysisTaskSE {
   void SetUseKFParticleVertexer(){fSecVertexerAlgo=2;}
   void SetFindVertexForCascades(Bool_t opt){fFindVertexForCascades=opt;}
   void SetReadMC(Bool_t read){fReadMC=read;}
+  void SetJetFindingTask (Bool_t set) {fSetJetFindingTask=set;}
   void SetUseCandidateAnalysisCuts(){fCandidateCutLevel=2;}
   void SetUseCandidateSkimCuts(){fCandidateCutLevel=1;}
   void SetUseNoCandidateCuts(){fCandidateCutLevel=0;}
@@ -46,7 +47,6 @@ class AliAnalysisTaskHFSimpleVertices : public AliAnalysisTaskSE {
   void EnableCPUTimeCheck(Bool_t enable=kTRUE, Bool_t milliseconds=kFALSE) {fEnableCPUTimeCheck=enable; fCountTimeInMilliseconds=milliseconds;}
 
  private:           
-  bool doJetFinding = true;
   void MakeJetFinding(AliESDEvent *esd, Int_t totTracks, Int_t iNegTrack_0, Int_t iPosTrack_0, AliAODRecoDecayHF2Prong* the2Prong);
   TH1F* hjetpt;
   TH1F* hjetE; // returns the energy component
@@ -240,6 +240,7 @@ class AliAnalysisTaskHFSimpleVertices : public AliAnalysisTaskSE {
   TH2F* fHistWallTimeCandVsNTracks;  //!<! histo with wall time for candidate selection vs number of selected tracks for candidates
 
   Bool_t  fReadMC;             // flag for access to MC
+  Bool_t fSetJetFindingTask;   //flag use/not use jet finding task
   Bool_t  fUsePhysSel;         // flag use/not use phys sel
   Int_t   fTriggerMask;        // mask used in physics selection
   Bool_t  fSelectOnCentrality; // flag to activate cut on centrality
