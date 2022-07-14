@@ -1,6 +1,7 @@
 AliAnalysisTaskHFSimpleVertices *AddTaskHFSimpleVertices(TString suffix="",
                                                          TString jsonconfigfile="",
-                                                         Bool_t readMC=kFALSE)
+                                                         Bool_t readMC=kFALSE, 
+                                                         Bool_t doJetFinding=kFALSE)
 {
 
   // Creates, configures and attaches to the train the task for tracking checks
@@ -49,6 +50,7 @@ AliAnalysisTaskHFSimpleVertices *AddTaskHFSimpleVertices(TString suffix="",
   }
   if (jsonconfigfile != "") tasktr->InitFromJson(jsonconfigfile);
   tasktr->SetReadMC(readMC);
+  tasktr->SetJetFindingTask(doJetFinding);
 
   mgr->AddTask(tasktr);
 
@@ -71,3 +73,4 @@ AliAnalysisTaskHFSimpleVertices *AddTaskHFSimpleVertices(TString suffix="",
 
   return tasktr;
 }
+
